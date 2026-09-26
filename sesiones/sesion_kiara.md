@@ -153,9 +153,12 @@ Conforme a las instrucciones del usuario, se creó y publicó el repositorio ofi
 - **Exclusiones en `.gitignore`:**
   - `PROYECTO DE INVESTIGACIÓN EN INTELIGENCIA ARTIFICIAL.pdf` (solicitado explícitamente) y `*.pdf`.
   - Entornos virtuales (`.venv/`, `venv/`), cachés compiladas de Python (`__pycache__/`, `*.pyc`), checkpoints de Jupyter (`.ipynb_checkpoints/`) y configuraciones de entorno (`.vscode/`).
-- **Commit Inicial (`ab5512f`):**
-  - Consolidación de los 17 archivos de código, modelos, datos, auditoría Excel y bitácoras (52,385 inserciones).
+- **Commits Registrados en GitHub:**
+  - `ab5512f`: *feat: proyecto integral de machine learning para prediccion sismica IGP* (commit inicial de 17 archivos).
+  - `680fb1e`: *docs: actualizar bitacora de kiara con enlace al repositorio oficial en GitHub*.
+  - `fa60fd8`: *docs: corregir formato de SISMO_SEVERO y remover seccion de bitacoras en README* (corrección del error de renderizado en LaTeX `_ allowed only in math mode` y retiro de la sección interna de bitácoras del README público).
 - **Push Remoto:** Ejecutado y verificado exitosamente mediante `gh repo create SISMOS --public --source=. --remote=origin --push`.
+- **Estructura Académica Futura:** Se tomó conocimiento del archivo institucional `PROYECTO DE INVESTIGACIÓN EN INTELIGENCIA ARTIFICIAL.pdf` (24 secciones de metodología y rigor experimental) que regirá la documentación formal en la siguiente etapa.
 
 ---
 

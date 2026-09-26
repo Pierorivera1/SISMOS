@@ -122,6 +122,16 @@ $ python3 /home/pierooo/Projects/ai_model/SISMOS/src/models/predict.py
 
 ---
 
+## 6. Documentación Técnica del Proyecto (`README.md`)
+Se redactó y estructuró el archivo principal `SISMOS/README.md` con un estándar formal de ingeniería:
+- **Resumen Ejecutivo:** Descripción del catálogo sísmico instrumental del IGP (1960–2025, 24,289 observaciones).
+- **Estructura del Proyecto:** Desglose del árbol de directorios con sus roles.
+- **Tabla Comparativa de Modelos:** Integración de la tabla de rendimiento de los 4 clasificadores (Logística, KNN, Árbol y Random Forest).
+- **Importancia de Variables y Optimización:** Documentación de los resultados de `GridSearchCV` y desglose de pesos geofísicos.
+- **Instrucciones de Reproducción:** Pasos exactos para clonar, instalar dependencias, ejecutar notebooks y realizar inferencias por terminal o script.
+
+---
+
 ## 7. Refactorización y Limpieza de Código
 A solicitud del usuario, se realizó una auditoría y limpieza de comentarios en todo el proyecto:
 - Se eliminaron todos los comentarios redundantes en bloques de importación (tales como `# Tratamiento de datos y álgebra lineal`, `# Visualización gráfica`, `# Scikit-Learn: Algoritmos de Clasificación`, `# Manejo y estructuración de datos`, etc.) en los cuadernos `01_auditoria_y_exploracion.ipynb` y `proyecto_integrador_sismos.ipynb`.
@@ -130,7 +140,17 @@ A solicitud del usuario, se realizó una auditoría y limpieza de comentarios en
 
 ---
 
-## 8. Guía Rápida para Refrescar Contexto en Futuras Sesiones
+## 8. Arquitectura y Visualización Dataflow con Archify
+Para maximizar la claridad visual y el estándar de documentación del pipeline:
+- Se modeló y validó el diagrama de arquitectura y flujo del pipeline usando **Archify** (perfil showcase con 9/9 validaciones exitosas, 0 errores, 0 warnings).
+- Se compiló el entregable interactivo HTML en:
+  `docs/pipeline_arquitectura.html`
+- Se generó el render visual embebido directamente en la sección de arquitectura de `README.md` junto con el enlace al visor interactivo.
+- Se sincronizaron los cambios con el repositorio remoto de GitHub ([commit `692c051`](https://github.com/Pierorivera1/SISMOS/commit/692c051)).
+
+---
+
+## 9. Guía Rápida para Refrescar Contexto en Futuras Sesiones
 Si se retoma este repositorio en una sesión futura o con otro agente:
 
 1. **Rutas principales:**

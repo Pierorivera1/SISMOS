@@ -116,3 +116,32 @@ Siguiendo de forma rigurosa el temario de la clase, se completó la comparación
 - **Profundidad:** 25.24% (hipocentros someros interplaca vs profundos intraplaca)
 - **Hora:** 13.19%
 - **Conclusión Geofísica:** Más del 86% de la capacidad predictiva reside en la localización tridimensional del sismo.
+
+
+---
+
+## 7. Versionamiento Oficial en GitHub y Auditoría de Fuentes
+
+Posterior al modelado y optimización, se procedió con la formalización del repositorio y gobernanza de datos:
+
+1. **Auditoría de Fuentes Institucional:**
+   - Se generó el archivo [`SISMOS/Auditoria_Fuentes_IGP.xlsx`](../Auditoria_Fuentes_IGP.xlsx) (conducido por Kiara), conteniendo las hojas `Ficha_Fuente`, `Auditoria_Variables` y `Control_Calidad` con 8 pruebas físicas aprobadas (`QC-01` a `QC-08`).
+2. **Repositorio Git y GitHub:**
+   - Se desacopló y limpió el `.git` superior accidental, inicializando el repositorio oficial en la carpeta `SISMOS/` (rama `main`).
+   - Se configuró `.gitignore` para aislar `*.pdf`, entornos virtuales, checkpoints y cachés.
+   - Se creó y vinculó el repositorio público oficial en GitHub: [`https://github.com/Pierorivera1/SISMOS`](https://github.com/Pierorivera1/SISMOS).
+3. **Pautas de Investigación Académica:**
+   - Se identificó y analizó el archivo [`PROYECTO DE INVESTIGACIÓN EN INTELIGENCIA ARTIFICIAL.pdf`](../../PROYECTO%20DE%20INVESTIGACI%C3%93N%20EN%20INTELIGENCIA%20ARTIFICIAL.pdf), que contiene la estructura formal de 24 secciones para el informe universitario de investigación que se elaborará en la siguiente fase.
+
+---
+
+## 8. Arquitectura Visual Interactiva con Archify y Refinamiento de README
+
+1. **Diagrama de Arquitectura Dataflow:**
+   - Back integró un diagrama de flujo y arquitectura generado con **Archify**, validado con perfil showcase (9/9 checks).
+   - Se generó el visualizador interactivo en `docs/pipeline_arquitectura.html` y se embebió el diagrama renderizado en el [`README.md`](../README.md).
+2. **Corrección de Sintaxis Markdown:**
+   - Se ajustó la sintaxis matemática de `README.md` eliminando expresiones en formato LaTeX (`_ allowed only in math mode`) para asegurar un renderizado visual perfecto en GitHub.
+   - Se removió la sección interna de bitácoras del `README.md` público para mantener el estándar formal del proyecto.
+3. **Sincronización:**
+   - Todos los cambios se encuentran sincronizados y commiteados en la rama `main` del repositorio remoto (`origin/main`).
