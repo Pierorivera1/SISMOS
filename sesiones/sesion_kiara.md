@@ -144,11 +144,27 @@ El libro de cálculo cuenta con diseño ejecutivo profesional (paleta institucio
 
 ---
 
-## 6. Guía de Restauración de Contexto (Context Refresh Guide)
+## 6. Publicación y Versionado en GitHub
+
+Conforme a las instrucciones del usuario, se creó y publicó el repositorio oficial para el proyecto en la cuenta de GitHub `Pierorivera1`:
+
+- **Repositorio Oficial:** [`https://github.com/Pierorivera1/SISMOS`](https://github.com/Pierorivera1/SISMOS)
+- **Rama Principal:** `main`
+- **Exclusiones en `.gitignore`:**
+  - `PROYECTO DE INVESTIGACIÓN EN INTELIGENCIA ARTIFICIAL.pdf` (solicitado explícitamente) y `*.pdf`.
+  - Entornos virtuales (`.venv/`, `venv/`), cachés compiladas de Python (`__pycache__/`, `*.pyc`), checkpoints de Jupyter (`.ipynb_checkpoints/`) y configuraciones de entorno (`.vscode/`).
+- **Commit Inicial (`ab5512f`):**
+  - Consolidación de los 17 archivos de código, modelos, datos, auditoría Excel y bitácoras (52,385 inserciones).
+- **Push Remoto:** Ejecutado y verificado exitosamente mediante `gh repo create SISMOS --public --source=. --remote=origin --push`.
+
+---
+
+## 7. Guía de Restauración de Contexto (Context Refresh Guide)
 
 Si una nueva sesión o agente necesita retomar este componente del proyecto, seguir los siguientes pasos:
 
 1. **Ubicación del Cuaderno Principal y Auditoría:**
+   - Repositorio GitHub: [`https://github.com/Pierorivera1/SISMOS`](https://github.com/Pierorivera1/SISMOS)
    - Cuaderno Maestro: [`SISMOS/NOTEBOOKS/proyecto_integrador_sismos.ipynb`](../NOTEBOOKS/proyecto_integrador_sismos.ipynb).
    - Auditoría de Fuentes: [`SISMOS/Auditoria_Fuentes_IGP.xlsx`](../Auditoria_Fuentes_IGP.xlsx).
    - Asegurarse de que el kernel seleccionado en VS Code sea **Python 3 (ipykernel)**.
