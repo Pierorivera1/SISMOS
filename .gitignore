@@ -1,0 +1,29 @@
+# Archivos PDF solicitados explícitamente para ignorar
+PROYECTO DE INVESTIGACIÓN EN INTELIGENCIA ARTIFICIAL.pdf
+*.pdf
+
+# Entornos virtuales de Python
+venv/
+.venv/
+env/
+ENV/
+
+# Caché y archivos compilados de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Checkpoints interactivos de Jupyter Notebooks
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Configuraciones de editores y sistemas operativos
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs y temporales
+*.log
+*.tmp
+*.bak
