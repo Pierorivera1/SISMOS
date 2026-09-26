@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "Pipeline de Machine Learning - SISMOS IGP",
+    "viewBox": [1080, 540],
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "datos-ingesta",
+        "label": "Ingesta y Calidad",
+        "focus": ["cat_igp", "diccionario", "etl_loader", "data_clean"],
+        "note": "Ingesta del catálogo histórico IGP (24,289 sismos) y saneamiento temporal."
+      },
+      {
+        "id": "preproc-modelos",
+        "label": "Modelado y Optimización",
+        "focus": ["data_clean", "leak_guard", "preproc", "clasificadores", "gridsearch"],
+        "note": "Preprocesamiento desacoplado y evaluación de 4 clasificadores con 5-Fold CV."
+      },
+      {
+        "id": "despliegue-inferencia",
+        "label": "Producción y Servicio",
+        "focus": ["gridsearch", "model_joblib", "predict_api"],
+        "note": "Serialización del mejor pipeline y consumo para inferencia en tiempo real."
+      }
+    ]
+  },
+  "stages": [
+    { "label": "Fuentes IGP" },
+    { "label": "Ingesta & ETL" },
+    { "label": "Preprocesamiento" },
+    { "label": "Modelado & Tuning" },
+    { "label": "Producción" }
+  ],
+  "nodes": [
+    { "id": "cat_igp", "type": "database", "label": "Catálogo IGP", "sublabel": "24,289 sismos", "stage": 0, "row": 0, "tag": "Datos Crudos", "width": 120 },
+    { "id": "diccionario", "type": "external", "label": "Metadatos IGP", "sublabel": "DiccionarioDatos.xlsx", "stage": 0, "row": 1, "tag": "Auditoría", "width": 120 },
+    { "id": "etl_loader", "type": "backend", "label": "igp_loader.py", "sublabel": "Ingesta & Parseo UTC", "stage": 1, "row": 0, "tag": "ETL", "width": 120 },
+    { "id": "data_clean", "type": "database", "label": "sismos_limpios", "sublabel": "Dataset curado", "stage": 1, "row": 1, "tag": "Target Binario", "width": 120 },
+    { "id": "preproc", "type": "backend", "label": "Preprocesador", "sublabel": "StandardScaler + Split", "stage": 2, "row": 0, "tag": "Scikit-Learn", "width": 120 },
+    { "id": "leak_guard", "type": "security", "label": "Leakage Guard", "sublabel": "Exclusión Magnitud", "stage": 2, "row": 1, "tag": "Validación", "width": 120 },
+    { "id": "clasificadores", "type": "backend", "label": "4 Clasificadores", "sublabel": "Logística, KNN, Árbol, RF", "stage": 3, "row": 0, "tag": "5-Fold CV", "width": 120 },
+    { "id": "gridsearch", "type": "backend", "label": "GridSearchCV", "sublabel": "RF Óptimo (AUC 0.603)", "stage": 3, "row": 1, "tag": "Optimización", "width": 120 },
+    { "id": "predict_api", "type": "cloud", "label": "predict.py", "sublabel": "Inferencia en Producción", "stage": 4, "row": 0, "tag": "Servicio API", "width": 120 },
+    { "id": "model_joblib", "type": "database", "label": "Pipeline Joblib", "sublabel": "pipeline_sismos_final", "stage": 4, "row": 1, "tag": "8.8 MB", "width": 120 }
+  ],
+  "flows": [
+    { "id": "f_raw_load", "from": "cat_igp", "to": "etl_loader", "label": "lectura CSV", "variant": "emphasis", "route": "straight" },
+    { "id": "f_meta_check", "from": "diccionario", "to": "etl_loader", "label": "validación", "variant": "default", "fromSide": "right", "toSide": "left" },
+    { "id": "f_clean_export", "from": "etl_loader", "to": "data_clean", "label": "datos limpios", "variant": "emphasis", "fromSide": "bottom", "toSide": "top", "route": "straight", "labelAt": [315, 200] },
+    { "id": "f_leakage_control", "from": "data_clean", "to": "leak_guard", "label": "fuga guard", "variant": "security", "route": "straight" },
+    { "id": "f_features_in", "from": "leak_guard", "to": "preproc", "label": "features X", "variant": "security", "fromSide": "top", "toSide": "bottom", "route": "straight", "labelAt": [530, 200] },
+    { "id": "f_train_split", "from": "preproc", "to": "clasificadores", "label": "split X, y", "variant": "emphasis", "route": "straight" },
+    { "id": "f_tune_rf", "from": "clasificadores", "to": "gridsearch", "label": "tuning RF", "variant": "emphasis", "fromSide": "bottom", "toSide": "top", "route": "straight", "labelAt": [745, 200] },
+    { "id": "f_serialize", "from": "gridsearch", "to": "model_joblib", "label": "serialización", "variant": "emphasis", "route": "straight" },
+    { "id": "f_serve_model", "from": "model_joblib", "to": "predict_api", "label": "carga joblib", "variant": "default", "fromSide": "top", "toSide": "bottom", "route": "straight", "labelAt": [960, 200] }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Ingesta y Calidad",
+      "items": [
+        "Tratamiento de horas UTC con padding zfill(6) a timestamps",
+        "0% nulos en variables hipocentrales cuantitativas",
+        "Definición de severidad sísmica (Magnitud >= 5.0)"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Control de Data Leakage",
+      "items": [
+        "Aislamiento estricto de la variable continua Magnitud",
+        "Estandarización exclusiva sobre pliegues de entrenamiento",
+        "Estratificación 80/20 sobre la clase minoritaria (21.02%)"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Servicio en Producción",
+      "items": [
+        "Random Forest optimizado con GridSearchCV (max_depth=12, n=100)",
+        "Pesos geofísicos dominantes en subducción (Latitud 31.2%, Longitud 30.3%)",
+        "Inferencia probabilística desacoplada para alertas en tiempo real"
+      ]
+    }
+  ]
+}

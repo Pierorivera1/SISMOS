@@ -20,6 +20,11 @@ SISMOS/
 │   │       └── IGP_catalogo_sismicos_desde_1960_ Metadatos_0.docx
 │   └── processed/
 │       └── sismos_limpios.csv                    # Catálogo curado y validado (24,289 registros x 12 cols)
+├── docs/                                         # Diagramas de arquitectura y flujo (Archify)
+│   ├── pipeline_arquitectura.dataflow.json       # Especificación declarativa del pipeline
+│   ├── pipeline_arquitectura.html                # Visor interactivo standalone (zoom, vistas y trazado)
+│   ├── pipeline_arquitectura.png                 # Render gráfico para visualización en GitHub
+│   └── pipeline_arquitectura.svg                 # Exportación vectorial SVG
 ├── models/
 │   └── pipeline_sismos_final.joblib              # Pipeline productivo serializado (8.8 MB)
 ├── NOTEBOOKS/
@@ -40,7 +45,13 @@ SISMOS/
 
 ---
 
-## Flujo Metodológico
+## Flujo Metodológico y Arquitectura del Pipeline
+
+<p align="center">
+  <img src="docs/pipeline_arquitectura.png" alt="Arquitectura del Pipeline SISMOS (Archify)" width="100%">
+</p>
+
+> 💡 **Diagrama Interactivo (Archify):** Puedes explorar este diagrama con navegación interactiva, inspección de nodos, vistas temáticas y trazado de flujo abriendo [`docs/pipeline_arquitectura.html`](docs/pipeline_arquitectura.html) directamente en tu navegador.
 
 ```mermaid
 flowchart LR
