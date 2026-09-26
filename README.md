@@ -2,7 +2,7 @@
 
 Sistema integral de ingeniería de datos, análisis exploratorio geoespacial y modelado predictivo de eventos sísmicos en el territorio peruano, desarrollado a partir del catálogo histórico oficial del **Instituto Geofísico del Perú (IGP)** que abarca el período 1960–2025 (24,289 observaciones registradas).
 
-El proyecto implementa un pipeline reproducible de Machine Learning para clasificar sismos según su severidad geofísica ($\text{Magnitud} \ge 5.0\text{ Mw}$) a partir de sus parámetros hipocentrales (coordenadas espaciales, profundidad y componente temporal), minimizando falsos negativos en zonas de alto riesgo de subducción.
+El proyecto implementa un pipeline reproducible de Machine Learning para clasificar sismos según su severidad geofísica (**Magnitud ≥ 5.0 Mw**) a partir de sus parámetros hipocentrales (coordenadas espaciales, profundidad y componente temporal), minimizando falsos negativos en zonas de alto riesgo de subducción.
 
 ---
 
@@ -57,8 +57,8 @@ flowchart LR
 1. **Ingesta y Limpieza de Datos (`src/data/igp_loader.py`):**
    - Lectura con separador `;` y normalización de encabezados.
    - Reconstrucción de `HORA_UTC` numérica con relleno de ceros a la izquierda (`zfill(6)`) y combinación con `FECHA_UTC` para generar la variable timestamp `FECHA_HORA`.
-   - Control de calidad geofísica: validación de coordenadas y restricciones físicas ($\text{PROFUNDIDAD} \ge 0$, $\text{MAGNITUD} > 0$).
-   - Generación de la variable objetivo binaria: $\text{SISMO\_SEVERO} = 1$ para $\text{MAGNITUD} \ge 5.0$, y $0$ en caso contrario.
+   - Control de calidad geofísica: validación de coordenadas y restricciones físicas (`PROFUNDIDAD ≥ 0`, `MAGNITUD > 0`).
+   - Generación de la variable objetivo binaria: **`SISMO_SEVERO` = 1** para **`MAGNITUD` ≥ 5.0**, y **0** en caso contrario.
 
 2. **Control Estricto de Fuga de Información (*Data Leakage*):**
    - Se excluye explícitamente la columna continua `MAGNITUD` del conjunto de variables predictoras $X$, dado que es el origen matemático del target.
@@ -180,12 +180,3 @@ print(resultado)
 #   'probabilidad_no_severo': 0.5328
 # }
 ```
-
----
-
-## Bitácoras y Trazabilidad Colaborativa
-
-Para consultar el registro detallado de decisiones técnicas, diseño arquitectónico y métricas del equipo, revisar los documentos dentro de [`sesiones/`](sesiones/):
-- **[`sesion_back.md`](sesiones/sesion_back.md):** Bitácora de Backend & Data Engineering (ingesta, saneamiento, manejo de horas, arquitectura de inferencia y refactorización).
-- **[`sesion_kiara.md`](sesiones/sesion_kiara.md):** Bitácora de Entorno Interactivo, Análisis Exploratorio Geoespacial y Cuaderno Maestro Integrador.
-- **[`sesion_learner.md`](sesiones/sesion_learner.md):** Bitácora general de coordinación y diseño metodológico.
