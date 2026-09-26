@@ -27,3 +27,7 @@ Thumbs.db
 *.log
 *.tmp
 *.bak
+
+# Bitácoras de agentes y sesiones internas
+sesiones/
+
